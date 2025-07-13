@@ -9,9 +9,8 @@ public class Knight extends Piece {
 
     @Override
     public boolean isValidMove(int destRow, int destCol) {
-        super.isValidSelection(destRow, destCol);
         int rowDiff = Math.abs(destRow - row);
         int colDiff = Math.abs(destCol - col);
-        return (rowDiff == 2 && colDiff == 1) || (rowDiff == 1 && colDiff == 2);
+        return isValidSelection(destRow, destCol) && (rowDiff == 2 && colDiff == 1) || (rowDiff == 1 && colDiff == 2);
     }
 }

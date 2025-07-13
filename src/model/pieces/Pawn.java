@@ -10,18 +10,19 @@ public class Pawn extends Piece {
 
     @Override
     public boolean isValidMove(int destRow, int destCol) {
-        super.isValidSelection(destRow, destCol);
         int rowDiff = destRow - row;
         int colDiff = Math.abs(destCol - col);
+        boolean isValidMove;
 
         if (color == Color.WHITE) {
-            return (rowDiff == 1 && colDiff == 0) ||
+            isValidMove = (rowDiff == 1 && colDiff == 0) ||
                     (row == 1 && rowDiff == 2 && colDiff == 0) ||
                     (rowDiff == 1 && colDiff == 1 && Board.getInstance().getPiece(destRow, destCol) != null);
         } else {
-            return (rowDiff == -1 && colDiff == 0) ||
+            isValidMove = (rowDiff == -1 && colDiff == 0) ||
                     (row == 6 && rowDiff == -2 && colDiff == 0) ||
                     (rowDiff == -1 && colDiff == 1 && Board.getInstance().getPiece(destRow, destCol) != null);
         }
+        return isValidSelection(destRow, destCol) && isValidMove;
     }
 }

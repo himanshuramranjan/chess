@@ -10,7 +10,6 @@ public class Rook extends Piece {
 
     @Override
     public boolean isValidMove(int destRow, int destCol) {
-        super.isValidSelection(destRow, destCol);
-        return (row == destRow || col == destCol);
+        return isValidSelection(destRow, destCol) && (row == destRow || col == destCol);
     }
 }
