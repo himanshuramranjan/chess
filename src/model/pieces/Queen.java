@@ -10,9 +10,8 @@ public class Queen extends Piece {
 
     @Override
     public boolean isValidMove(int destRow, int destCol) {
-        super.isValidSelection(destRow, destCol);
         int rowDiff = Math.abs(destRow - row);
         int colDiff = Math.abs(destCol - col);
-        return (rowDiff == colDiff) || (row == destRow || col == destCol);
+        return isValidSelection(destRow, destCol) && ((rowDiff == colDiff) || (row == destRow || col == destCol));
     }
 }
