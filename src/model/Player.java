@@ -18,14 +18,17 @@ public class Player {
 
     public void makeMove(Move move) {
         Piece piece = move.getPiece();
+        Board board = Board.getInstance();
+
         int destRow = move.getRow();
         int destCol = move.getCol();
 
-        if (piece.isValidMove(destRow, destCol)) {
+        if (piece.isValidMove(destRow, destCol) || board.getBoard()[destRow][destCol] != null) {
             int sourceRow = piece.getRow();
             int sourceCol = piece.getCol();
-            Board.setPiece(sourceRow, sourceCol, null);
-            Board.setPiece(destRow, destCol, piece);
+
+            board.setPiece(sourceRow, sourceCol, null);
+            board.setPiece(destRow, destCol, piece);
             piece.setPosition(destRow, destCol);
         } else {
             throw new InvalidMoveException("Invalid move!");
