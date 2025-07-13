@@ -6,26 +6,17 @@ import model.pieces.*;
 
 public class Board {
 
-    private static volatile Board chessBoard;
-    private static volatile Piece[][] board;
+    private static final Board chessBoard = new Board();
+    private Piece[][] board;
 
     private Board() {
         board = new Piece[8][8];
         initializeBoard();
     }
 
-    public static Board getInstance() {
-        if(board == null) {
-            synchronized (Board.class) {
-                if(board == null) {
-                    chessBoard = new Board();
-                }
-            }
-        }
-        return chessBoard;
-    }
+    public static Board getInstance() { return chessBoard; }
 
-    private static void initializeBoard() {
+    private void initializeBoard() {
         // Initialize white pieces
         board[0][0] = new Rook(Color.WHITE, 0, 0);
         board[0][1] = new Knight(Color.WHITE, 0, 1);
@@ -57,8 +48,12 @@ public class Board {
         return board[row][col];
     }
 
-    public static void setPiece(int row, int col, Piece piece) {
+    public void setPiece(int row, int col, Piece piece) {
         board[row][col] = piece;
+    }
+
+    public Piece[][] getBoard() {
+        return board;
     }
 
     public boolean isCheckmate(Color color) {
