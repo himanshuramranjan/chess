@@ -8,7 +8,7 @@ import model.pieces.Piece;
 import java.util.Scanner;
 
 public class ChessGame {
-    private static volatile ChessGame chessGame;
+    private static final ChessGame chessGame = new ChessGame();
     private final Player[] players;
     private final Board board;
     private int currentPlayer;
@@ -19,16 +19,7 @@ public class ChessGame {
         this.currentPlayer = 0;
     }
 
-    public static ChessGame getInstance() {
-        if(chessGame == null) {
-            synchronized (ChessGame.class) {
-                if(chessGame == null) {
-                    chessGame = new ChessGame();
-                }
-            }
-        }
-        return chessGame;
-    }
+    public static ChessGame getInstance() { return chessGame; }
 
     public Player[] getPlayers() {
         return players;
