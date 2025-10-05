@@ -1,0 +1,26 @@
+> Simpler alternative design
+
+1> Same as TicTacToe approach rather having pieces location info
+board can store the location of pieces :
+
+board[0][0] = new Rook(WHITE); board[7][7] = new Rook(BLACK);
+
+and while making the moves,
+
+Piece tem = board[0][0];
+board[0][3] = tem;
+board[0][0] = null;
+
+2> No need to Move class as position details are embedded in the board
+
+3> Piece class will be simplified with just Color and validateMove()
+
+public abstract class Piece {
+    protected final Color color;
+
+    protected Piece(Color color, int row, int col) {
+        this.color = color;
+    }
+
+    public abstract boolean isValidMove(int curRow, int curCol, int nxtRow, int nxtCol);
+}
